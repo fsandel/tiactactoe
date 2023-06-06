@@ -1,5 +1,5 @@
 run:
-	python test.py
+	python main.py
 
 init:
 	pip install -r requirements.txt
