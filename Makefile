@@ -1,13 +1,8 @@
-NAME = Test
+run:
+	python test.py
 
 init:
 	pip install -r requirements.txt
-
-test:
-	py.test tests
-
-run:
-	python test.py
 
 local:
 	source env/bin/activate
@@ -15,4 +10,4 @@ local:
 log:
 	python -m pip freeze > requirements.txt
 
-.PHONY: init test
+.PHONY: run init local log
