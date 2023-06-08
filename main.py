@@ -1,4 +1,5 @@
 import pygame
+import board
 
 pygame.init()
 
@@ -15,3 +16,8 @@ while active:
 				active = False
 
 pygame.quit()
+
+b = board.Board(3)
+#print(b)
+b[1][1].toCross()
+print(b[1][1])
