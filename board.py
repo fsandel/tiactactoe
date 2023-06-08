@@ -41,3 +41,8 @@ class Board:
 
     def __setitem__(self, key, value):
         self.__field[key] = value
+
+    def flushBoard(self):
+        for line in self.__field:
+            for f in line:
+                f.toEmpty()
