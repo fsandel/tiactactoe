@@ -1,4 +1,3 @@
-
 class Field:
     def __init__(self):
         self.__type = "EMPTY"
