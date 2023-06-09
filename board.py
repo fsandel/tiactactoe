@@ -5,13 +5,13 @@ class Board:
 
     def __init__(self, size):
         self.__size = size
-        self.__field = [[field.Field() for i in range(size)] for j in range(size)]
+        self.__field = [[field.EMPTY for i in range(size)] for j in range(size)]
 
     def __str__(self):
         s = ""
         for row in self.__field:
             for r in row:
-                s += r.__str__() + " "
+                s += r.getType() + " "
             s += "\n"
         return s
 
