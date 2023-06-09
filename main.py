@@ -3,6 +3,7 @@ import board
 import settings
 import user
 import field
+import grafics
 
 LEFT = 1
 RIGHT = 3
@@ -19,7 +20,7 @@ def exit_handler(events):
     return active
 
 
-def gameloop(board_state):
+def gameloop(surface, board_state):
     active = True
 
     x_pos = 0
@@ -27,6 +28,7 @@ def gameloop(board_state):
 
     player = user.Player(field.CIRCLE)
     while active:
+
         events = pygame.event.get()
         active = exit_handler(events)
         for event in events:
@@ -34,15 +36,21 @@ def gameloop(board_state):
                 x_pos = int(pygame.mouse.get_pos()[0] * settings.SIZE / settings.WIDTH)
                 y_pos = int(pygame.mouse.get_pos()[1] * settings.SIZE / settings.HEIGHT)
                 player.setField(board_state, x_pos, y_pos)
+                player.draw(surface, x_pos, y_pos)
                 print(board_state)
+
+        pygame.display.flip()
 
 
 def main():
     pygame.init()
 
     board_state = board.Board(settings.SIZE)
-    screen = pygame.display.set_mode((settings.WIDTH, settings.HEIGHT))
-    gameloop(board_state)
+    surface = pygame.display.set_mode((settings.WIDTH, settings.HEIGHT))
+    surface.fill((255, 255, 255))
+    grafics.draw_lines(surface)
+
+    gameloop(surface, board_state)
 
     pygame.quit()
 
