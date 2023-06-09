@@ -38,6 +38,7 @@ def draw_circle(surface: pygame.Surface, x_pos: int, y_pos: int):
     pygame.draw.circle(surface,
                        pygame.Color(0, 0, 0),
                        (
-                       settings.WIDTH * (x_pos + 0.5) / settings.SIZE, settings.HEIGHT * (y_pos + 0.5) / settings.SIZE),
+                           settings.WIDTH * (x_pos + 0.5) / settings.SIZE,
+                           settings.HEIGHT * (y_pos + 0.5) / settings.SIZE),
                        radius,
                        5)
