@@ -4,6 +4,7 @@ import settings
 import user
 import field
 import grafics
+import ai
 
 LEFT = 1
 RIGHT = 3
@@ -27,6 +28,8 @@ def gameloop(surface, board_state):
     y_pos = 0
 
     player = user.Player(field.CIRCLE)
+    ai_player = ai.AI_easy(field.CROSS)
+
     while active:
 
         events = pygame.event.get()
@@ -37,6 +40,7 @@ def gameloop(surface, board_state):
                 y_pos = int(pygame.mouse.get_pos()[1] * settings.SIZE / settings.HEIGHT)
                 player.setField(board_state, x_pos, y_pos)
                 player.draw(surface, x_pos, y_pos)
+                ai_player.draw(surface, *ai_player.choose_next_place(board_state))
                 print(board_state)
 
         pygame.display.flip()
