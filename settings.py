@@ -1,2 +1,3 @@
 HEIGHT = 800
 WIDTH = 1000
+SIZE = 3

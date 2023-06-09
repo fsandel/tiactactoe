@@ -1,9 +1,12 @@
 import pygame
 import board
 import settings
+import user
+import field
 
 LEFT = 1
 RIGHT = 3
+
 
 def exit_handler(events):
     active = True
@@ -19,24 +22,29 @@ def exit_handler(events):
 def gameloop(board_state):
     active = True
 
+    x_pos = 0
+    y_pos = 0
+
+    player = user.Player(field.CIRCLE)
     while active:
         events = pygame.event.get()
         active = exit_handler(events)
         for event in events:
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == LEFT:
-                print("clicked")
+                x_pos = int(pygame.mouse.get_pos()[0] * settings.SIZE / settings.WIDTH)
+                y_pos = int(pygame.mouse.get_pos()[1] * settings.SIZE / settings.HEIGHT)
+                player.setField(board_state, x_pos, y_pos)
+                print(board_state)
 
 
 def main():
     pygame.init()
 
-    board_state = board.Board
-    screen = pygame.display.set_mode((settings.HEIGHT, settings.WIDTH))
-
+    board_state = board.Board(settings.SIZE)
+    screen = pygame.display.set_mode((settings.WIDTH, settings.HEIGHT))
     gameloop(board_state)
 
     pygame.quit()
-
 
 
 if __name__ == "__main__":
