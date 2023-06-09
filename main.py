@@ -40,7 +40,19 @@ def gameloop(surface, board_state):
                 y_pos = int(pygame.mouse.get_pos()[1] * settings.SIZE / settings.HEIGHT)
                 player.setField(board_state, x_pos, y_pos)
                 player.draw(surface, x_pos, y_pos)
+                if board_state.checkWinner() == field.CIRCLE:
+                    print("circle won")
+                    return
+                if board_state.checkWinner() == field.CROSS:
+                    print("cross won")
+                    return
                 ai_player.draw(surface, *ai_player.choose_next_place(board_state))
+                if board_state.checkWinner() == field.CIRCLE:
+                    print("circle won")
+                    return
+                if board_state.checkWinner() == field.CROSS:
+                    print("cross won")
+                    return
                 print(board_state)
 
         pygame.display.flip()
